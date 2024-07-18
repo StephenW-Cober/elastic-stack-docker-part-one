@@ -21,6 +21,8 @@ networks:
 
 services:
   setup:
+    profiles: 
+      - setup
     image: docker.elastic.co/elasticsearch/elasticsearch:${STACK_VERSION}
     volumes:
       - certs:/usr/share/elasticsearch/config/certs
@@ -208,6 +210,9 @@ services:
     labels:
       co.elastic.logs/module: logstash
     user: root
+    ports:
+      - ${LOGSTASH_PORT_TCP}:5000
+      - ${LOGSTASH_PORT_GELF}:12201/udp
     volumes:
       - certs:/usr/share/logstash/certs
       - logstashdata01:/usr/share/logstash/data
