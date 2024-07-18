@@ -21,8 +21,6 @@ networks:
 
 services:
   setup:
-    profiles: 
-      - setup
     image: docker.elastic.co/elasticsearch/elasticsearch:${STACK_VERSION}
     volumes:
       - certs:/usr/share/elasticsearch/config/certs
