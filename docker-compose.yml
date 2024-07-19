@@ -74,6 +74,7 @@ services:
       interval: 1s
       timeout: 5s
       retries: 120
+    restart: unless-stopped
 
   es01:
     depends_on:
@@ -118,6 +119,7 @@ services:
       interval: 10s
       timeout: 10s
       retries: 120
+    restart: unless-stopped
 
   kibana:
     depends_on:
@@ -151,6 +153,7 @@ services:
       interval: 10s
       timeout: 10s
       retries: 120
+    restart: unless-stopped
 
   metricbeat01:
     depends_on:
@@ -176,6 +179,7 @@ services:
       - LOGSTASH_HOSTS=http://logstash01:9600
     command:
       - --strict.perms=false
+    restart: unless-stopped
 
   filebeat01:
     depends_on:
@@ -198,6 +202,7 @@ services:
       - LOGSTASH_HOSTS=http://logstash01:9600
     command:
       - --strict.perms=false
+    restart: unless-stopped
 
   logstash01:
     depends_on:
@@ -222,3 +227,4 @@ services:
       - ELASTIC_USER=elastic
       - ELASTIC_PASSWORD=${ELASTIC_PASSWORD}
       - ELASTIC_HOSTS=https://es01:9200
+    restart: unless-stopped
